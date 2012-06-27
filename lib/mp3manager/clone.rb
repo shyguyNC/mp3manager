@@ -1,6 +1,8 @@
-# Clone opens all MP3 files from directory 'source' and saves them to dest
+# Clone opens all mp3 files from directory 'source' and saves them to directory 'dest'.
 #
-# The files are currently saved as Artist - Title only
+# The files are currently saved as Artist - Title only.
+#
+# Any existing contents in 'dest' will be deleted before formatted mp3s are copied in.
 # --
 # TODO: implement passed-in format
 # TODO: implement ability to create folders from this format

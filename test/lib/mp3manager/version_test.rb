@@ -1,4 +1,4 @@
-require_relative '../../test_helper'
+require_relative "../../test_helper"
 
 describe Mp3manager do
 	it "must be defined" do
