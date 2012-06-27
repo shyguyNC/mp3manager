@@ -53,7 +53,6 @@ module Mp3manager
 			puts "saving #{@path} as #{dest_path}"
 
 			FileUtils.cp(@path, dest_path)
-			puts "all files saved"
 		end
 
 		# save the MP3 in place

@@ -5,7 +5,7 @@
 # Author:: Danny Holyfield (shyguyncdnb@gmail.com)
 # License:: Distributes under the same terms as Ruby
 
-require "song_file"
+require_relative "song_file"
 
 module Mp3manager
 class SongDirectory

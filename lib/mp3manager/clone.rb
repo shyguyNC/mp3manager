@@ -9,8 +9,8 @@
 # Author:: Danny Holyfield (shyguyncdnb@gmail.com)
 # License:: Distributes under the same terms as Ruby
 
-require "job"
-require "song_directory"
+require_relative "job"
+require_relative "song_directory"
 
 module Mp3manager
 	class Clone < Job
@@ -31,6 +31,7 @@ module Mp3manager
 		def run
 			directory = SongDirectory.new(@source)
 			directory.save_by_tags(@dest)
+			puts "all files saved"
 		end
 
 		# create new folders in @dest by artist - making this optional on v1.0

@@ -20,6 +20,6 @@ module Mp3manager
   def self.clone(source, dest)
   	job = Clone.new(source, dest)
   	puts "new Clone object created: #{job.inspect}"
-  	#job.run
+  	job.run
   end
 end
