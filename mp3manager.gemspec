@@ -4,8 +4,8 @@ require File.expand_path('../lib/mp3manager/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Danny Holyfield"]
   gem.email         = ["shyguyncdnb@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{A simple mp3 renamer and organizer, based on id3v2 tags}
+  gem.summary       = %q{If you're nice, I'll tell you how to use it!}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
@@ -14,4 +14,7 @@ Gem::Specification.new do |gem|
   gem.name          = "mp3manager"
   gem.require_paths = ["lib"]
   gem.version       = Mp3manager::VERSION
+
+  gem.add_development_dependency "rake"
+  gem.add_dependency "mp3info"
 end
