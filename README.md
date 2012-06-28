@@ -14,24 +14,23 @@ Be sure to read through the issues section before submitting new issues/feature 
 
 Download all source files and run:
 
-rake install
+	rake install
 
 mp3manager requires moumar's mp3info gem
 https://github.com/moumar/ruby-mp3info
 
-gem install mp3info
+	gem install mp3info
 
 ## Usage
 
 From your ruby script:
 
-require "mp3manager"
-
-Mp3manager.clone("source-folder", "destination-folder")
+	require "mp3manager"
+	Mp3manager.clone("source-folder", "destination-folder")
 
 OR from the command line:
 
-mp3manager source-folder destination-folder
+	mp3manager source-folder destination-folder
 
 ## Contributing
 
