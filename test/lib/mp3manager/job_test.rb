@@ -6,7 +6,7 @@ describe Mp3manager::Job do
 	end
 
 	# test that type property is set properly
-	it "type must be a string" do
+	it "must have a type (string)" do
 		@job.type.must_be_instance_of(String)
 	end
 end
