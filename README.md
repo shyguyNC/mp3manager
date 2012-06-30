@@ -16,6 +16,9 @@ Download all source files and run:
 
 	rake install
 
+mp3manager is written in ruby 1.9.3, installed via rvm
+https://rvm.io//
+
 mp3manager requires moumar's mp3info gem
 https://github.com/moumar/ruby-mp3info
 
