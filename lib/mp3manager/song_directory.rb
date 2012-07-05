@@ -42,31 +42,6 @@ class SongDirectory
 
 		# save each MP3file object in the folder
 		def save_by_tags(dest)
-			# create the directory if it doesn't exist
-			#--
-			# TODO: move this to MP3clone - MP3folder shouldn't worry about what's there, or even know that they're cloning!
-			#++
-			if !File.exists?(dest)
-				puts "#{dest} not found, creating ..."
-				Dir.mkdir(dest)
-			end
-
-			# empty the contents of the directory
-			#--
-			# TODO: move this to MP3clone, it's job-specific
-			#++
-			Dir.foreach(dest) do |item|
-				next if File.path(item) =~ /^\./
-				path = File.absolute_path(item, dest)
-				if File.directory?(path)
-					puts "deleting directory: #{path}"
-					FileUtils.rm_rf(path)
-				else
-					puts "deleting file: #{path}"
-					FileUtils.rm(path)
-				end
-			end
-
 			# call save_by_tags on all MP3file objects
 			@files.each { |mp3| mp3.save_by_tags(dest) }
 		end

@@ -41,8 +41,31 @@ module Mp3manager
 				return 0
 			end
 
+			# create new SongDirectory object
 			directory = SongDirectory.new(@source)
+
 			puts "cloning mp3s to #{dest}"
+
+			# create the directory if it doesn't exist
+			if !File.exists?(@dest)
+				puts "#{@dest} not found, creating ..."
+				Dir.mkdir(@dest)
+			end
+
+			# empty the contents of the directory
+			Dir.foreach(@dest) do |item|
+				next if File.path(item) =~ /^\./
+				path = File.absolute_path(item, @dest)
+				if File.directory?(path)
+					puts "deleting directory: #{path}"
+					FileUtils.rm_rf(path)
+				else
+					puts "deleting file: #{path}"
+					FileUtils.rm(path)
+				end
+			end
+
+			# call the SongDirectory's save_by_tags method
 			directory.save_by_tags(@dest)
 			puts "all files saved"
 		end
