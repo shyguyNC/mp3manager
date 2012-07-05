@@ -42,6 +42,7 @@ module Mp3manager
 			end
 
 			directory = SongDirectory.new(@source)
+			puts "cloning mp3s to #{dest}"
 			directory.save_by_tags(@dest)
 			puts "all files saved"
 		end

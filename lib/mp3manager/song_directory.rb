@@ -42,11 +42,6 @@ class SongDirectory
 
 		# save each MP3file object in the folder
 		def save_by_tags(dest)
-			#--
-			# TODO: move this notification to MP3clone, less coupled that way
-			#++
-			puts "cloning mp3s to #{dest}"
-
 			# create the directory if it doesn't exist
 			#--
 			# TODO: move this to MP3clone - MP3folder shouldn't worry about what's there, or even know that they're cloning!
