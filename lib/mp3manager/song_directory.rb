@@ -41,10 +41,6 @@ class SongDirectory
 		end
 
 		# save each MP3file object in the folder
-		#--
-		# what if @source = @dest? that could indicate a rename, instead of a clear/copy
-		# perhaps 'rename' should be a job
-		#++
 		def save_by_tags(dest)
 			#--
 			# TODO: move this notification to MP3clone, less coupled that way

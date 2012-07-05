@@ -31,6 +31,16 @@ module Mp3manager
 
 		# create folders by unique artist in @dest, clone and copy from @source
 		def run
+			# return 0 if source and dest are the same
+			# --
+			# TODO: look into whether this should throw a custom error
+			# it is possible that source and destination could be the same for a forthcoming rename job
+			# ++
+			if @source == @dest
+				puts "source and destination folders cannot be the same for clone operations!"
+				return 0
+			end
+
 			directory = SongDirectory.new(@source)
 			directory.save_by_tags(@dest)
 			puts "all files saved"
