@@ -47,12 +47,18 @@ module Mp3manager
 			puts "cloning mp3s to #{dest}"
 
 			# create the directory if it doesn't exist
+			# --
+			# TODO: factor this out into another method, write a test for it
+			# ++
 			if !File.exists?(@dest)
 				puts "#{@dest} not found, creating ..."
 				Dir.mkdir(@dest)
 			end
 
 			# empty the contents of the directory
+			# --
+			# TODO: factor this out into another method, write a test for it
+			# ++
 			Dir.foreach(@dest) do |item|
 				next if File.path(item) =~ /^\./
 				path = File.absolute_path(item, @dest)

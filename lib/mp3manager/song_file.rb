@@ -19,7 +19,7 @@ module Mp3manager
 			@title  = 'Unknown'
 			# only two properties I care about right now,
 			# BUT were this to be expanded to be useful to the general public
-			# we'd want to include album, year, etc.
+			# we'd want to include album, year, etc. - probably better to have an internal tags array
 			self.get_tags
 		end
 

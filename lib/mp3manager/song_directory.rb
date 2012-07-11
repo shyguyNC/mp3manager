@@ -8,7 +8,7 @@
 require_relative "song_file"
 
 module Mp3manager
-class SongDirectory
+	class SongDirectory
 
 		attr_accessor :path
 
