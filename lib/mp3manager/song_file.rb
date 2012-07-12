@@ -11,21 +11,16 @@ require "mp3info"
 module Mp3manager
 	class SongFile
 
-		attr_accessor :path, :artist, :title
+		attr_accessor :path, :tags
 
 		def initialize(path)
-			@path   = path
-			@artist = 'Unknown'
-			@title  = 'Unknown'
-			# only two properties I care about right now,
-			# BUT were this to be expanded to be useful to the general public
-			# we'd want to include album, year, etc. - probably better to have an internal tags array
+			@path = path
 			self.get_tags
 		end
 
 		# string representation for debugging
 		def to_s
-			"#{@path} -- Artist: #{@artist} -- Title: #{@title}"
+			"#{@path} -- tags: #{@tags.inspect}"
 		end
 
 		# propogate properties from id3 tags
@@ -33,15 +28,14 @@ module Mp3manager
 			# TODO: add error handling for path not being found
 			Mp3Info.open(@path) do |mp3|
 				# TODO: check to see if 'Unknown' should be overwritten in a more efficient manner
-				@artist = mp3.tag.artist
-				@title  = mp3.tag.title
+				@tags = mp3.tag
 			end
 		end
 
 		# save a copy of the file, named by the current artist/title
 		def save_by_tags(dest)
 			# TODO - make format for file name part of passed in arguments
-			filename = "#{@artist} - #{@title}"
+			filename = "#{@tags.artist} - #{@tags.title}"
 			# replace joing characters with and
 			filename.gsub!(/[,&\+]/, " and")
 			# remove any other invalid characters
