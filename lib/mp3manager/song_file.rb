@@ -32,16 +32,14 @@ module Mp3manager
 			end
 		end
 
-		# save a copy of the file, named by the current artist/title
-		def save_by_tags(dest)
-			# TODO - make format for file name part of passed in arguments
-			filename = "#{@tags.artist} - #{@tags.title}"
-			# replace joing characters with and
-			filename.gsub!(/[,&\+]/, " and")
-			# remove any other invalid characters
-			filename.gsub!(/[^\s\(\)a-zA-Z0-9\\-]/, "")
-			# squeeze whitespace
-			filename.gsub!(/\s+/, " ")
+		# save a copy of the file, named via format
+		# --
+		# TODO: write some error checking: do all tags in format exist? do they have length?
+		# ++
+		def save_by_tags(format, dest)
+			# build and clean file name
+			filename = build_fname(format)
+			filename = clean_fname(filename)
 
 			dest_path = "#{dest}/#{filename}.mp3"
 			puts "saving #{@path} as #{dest_path}"
@@ -54,6 +52,35 @@ module Mp3manager
 			# --
 			# TODO: implement saving in place for rename jobs
 			# ++
+		end
+
+		# clean the file name up
+		# --
+		# TODO: write some tests around this
+		# ++
+		def clean_fname(name)
+			filename = name
+			# replace joining characters with and
+			filename.gsub!(/[,&\+]/, " and")
+			# remove any other invalid characters
+			filename.gsub!(/[^\s\(\)a-zA-Z0-9\\-]/, "")
+			# squeeze whitespace
+			filename.gsub!(/\s+/, " ")
+			filename
+		end
+
+		# build a file name from a format
+		# --
+		# TODO: write some tests around this
+		# ++
+		def build_fname(format)
+			f = format.dup
+			tags = []
+			# pull out all tag names
+			tags = format.scan(/\[(.*?)\]/)
+			# replace all tag names
+			tags.each { |tag| f.gsub!(/\[#{tag[0]}\]/, @tags[tag[0]]) }
+			f
 		end
 	end
 end

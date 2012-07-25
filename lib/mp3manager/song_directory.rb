@@ -41,9 +41,9 @@ module Mp3manager
 		end
 
 		# save each MP3file object in the folder
-		def save_by_tags(dest)
+		def save_by_tags(format, dest)
 			# call save_by_tags on all MP3file objects
-			@files.each { |mp3| mp3.save_by_tags(dest) }
+			@files.each { |mp3| mp3.save_by_tags(format, dest) }
 		end
 
 		# returns an array of unique artist names

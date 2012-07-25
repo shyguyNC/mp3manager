@@ -17,8 +17,8 @@ require "mp3manager/version"
 require "mp3manager/clone"
 
 module Mp3manager
-  def self.clone(source, dest)
-  	job = Clone.new(source, dest)
+  def self.clone(format, source, dest)
+  	job = Clone.new(format, source, dest)
   	job.run
   end
 end

@@ -17,16 +17,17 @@ require_relative "song_directory"
 module Mp3manager
 	class Clone < Job
 
-		attr_accessor :source, :dest
+		attr_accessor :format, :source, :dest
 
-		def initialize(source, dest)
+		def initialize(format, source, dest)
 			super("clone")
+			@format = format
 			@source = source
 			@dest = dest
 		end
 
 		def to_s
-			"#{super}, source: #{@source}, dest: #{@dest}"
+			"#{super}, format: #{@format}, source: #{@source}, dest: #{@dest}"
 		end
 
 		# create folders by unique artist in @dest, clone and copy from @source
@@ -72,7 +73,7 @@ module Mp3manager
 			end
 
 			# call the SongDirectory's save_by_tags method
-			directory.save_by_tags(@dest)
+			directory.save_by_tags(@format, @dest)
 			puts "all files saved"
 		end
 
