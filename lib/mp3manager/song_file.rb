@@ -1,8 +1,7 @@
 # references the original audio file
 #
-# to be expanded with more tag names eventually
-#
 # only saves a copy at the moment, renaming in place to come later (save_by_tags!)
+#
 # Author:: Danny Holyfield (shyguyncdnb@gmail.com)
 # License:: Distributes under the same terms as Ruby
 

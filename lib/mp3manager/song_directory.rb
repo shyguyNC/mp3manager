@@ -25,7 +25,7 @@ module Mp3manager
 			"SongDirectory object -- path: #{@path}, files:\n#{@files}"
 		end
 
-		# build the internal array of MP3file objects
+		# build the internal array of SongFile objects
 		#
 		# we only push on .mp3 files for now
 		#--
@@ -35,27 +35,24 @@ module Mp3manager
 			Dir.foreach(@path) do |file|
 				if File.extname(file) == ".mp3"
 					thisfile = SongFile.new("#{@path}/#{File.path(file)}")
-					@files.push(thisfile)
+					@files << thisfile
 				end
 			end
 		end
 
-		# save each MP3file object in the folder
+		# save each SongFile object in the folder
 		def save_by_tags(format, dest)
-			# call save_by_tags on all MP3file objects
+			# call save_by_tags on all SongFile objects
 			@files.each { |mp3| mp3.save_by_tags(format, dest) }
 		end
 
-		# returns an array of unique artist names
-		def get_unique_artists
-			artists = []
+		# returns an array of unique tag values
+		def get_unique_tag_values(tag)
+			values = []
 			@files.each { |mp3| 
-				#--
-				# TODO: check for existence of mp3's artist in array, push if not found
+				values << mp3.tags.tag if mp3.tags.tag.length
 			}
-			# TODO: sort artist by artist name before returning
-			#++
-			artists
+			values.sort!
 		end
 	end
 end

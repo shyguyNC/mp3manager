@@ -1,10 +1,13 @@
 # Clone opens all mp3 files from directory 'source' and saves them to directory 'dest'.
 #
-# The files are currently saved as Artist - Title only.
+# Supports formatting by id3 tags, ex: [artist] - [title].
+#
+# Non-existent tags will be replaced with the string "UNKNOWN".
+#
+# No files will be overwritten, duplicate files have a counter appended to the end of their file names if necessary.
 #
 # Any existing contents in 'dest' will be deleted before formatted mp3s are copied in.
 # --
-# TODO: implement passed-in format
 # TODO: implement ability to create folders from this format
 # ++
 #
