@@ -33,15 +33,22 @@ module Mp3manager
 		end
 
 		# save a copy of the file, named via format
-		# --
-		# TODO: write some error checking: do all tags in format exist? do they have length?
-		# ++
 		def save_by_tags(format, dest)
 			# build and clean file name
 			filename = build_fname(format)
 			filename = clean_fname(filename)
 
-			dest_path = "#{dest}/#{filename}.mp3"
+			dest_path = "#{dest}/#{filename}"
+			if File.exists?("#{dest_path}.mp3")
+				ctr = 1
+				new_path = "#{dest_path}_#{ctr}"
+				while File.exist?("#{new_path}.mp3")
+					ctr++
+					new_path = dest_path + ctr
+				end
+				dest_path = new_path
+			end
+			dest_path += ".mp3"
 			puts "saving #{@path} as #{dest_path}"
 
 			FileUtils.cp(@path, dest_path)
@@ -79,7 +86,10 @@ module Mp3manager
 			# pull out all tag names
 			tags = format.scan(/\[(.*?)\]/)
 			# replace all tag names
-			tags.each { |tag| f.gsub!(/\[#{tag[0]}\]/, @tags[tag[0]]) }
+			tags.each { |tag| 
+				subval = @tags[tag[0]] && @tags[tag[0]].length ? @tags[tag[0]] : "UNKNOWN"
+				f.gsub!(/\[#{tag[0]}\]/, subval) 
+			}
 			f
 		end
 	end
