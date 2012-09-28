@@ -3,7 +3,7 @@
 require "mp3manager"
 
 if(ARGV.length == 3)
-	Mp3manager.clone(ARGV[0], ARGV[1], ARGV[2])
+  Mp3manager.clone(ARGV[0], ARGV[1], ARGV[2])
 else
-	puts "wrong number of arguments; expected format, source and destination folders"
+  puts "wrong number of arguments; expected format, source and destination folders"
 end

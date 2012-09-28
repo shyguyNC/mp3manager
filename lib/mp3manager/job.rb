@@ -6,21 +6,21 @@
 # License:: Distributes under the same terms as Ruby
 
 module Mp3manager
-	class Job
+  class Job
 
-		attr_reader :type
+    attr_reader :type
 
-		def initialize(type)
-			@type = type
-		end
+    def initialize(type)
+      @type = type
+    end
 
-		def to_s
-			"mp3manager Job Object --- type: #{@type}"
-		end
+    def to_s
+      "mp3manager Job Object --- type: #{@type}"
+    end
 
-		# run should be overridden in any classes that extend Job
-		def run
-			puts "#{@type}: this job doesn't know how to run"
-		end
-	end
+    # run should be overridden in any classes that extend Job
+    def run
+      puts "#{@type}: this job doesn't know how to run"
+    end
+  end
 end
